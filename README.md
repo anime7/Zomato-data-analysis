@@ -15,11 +15,8 @@ Objectives
 ---------------------------------------------------------------------------------------------------------------------------
 
 Schema::
-Q1. Top 5 Most Frequently Ordered Dishes
-Question:
-Write a query to find the top 5 most frequently ordered dishes by the customer "Arjun Mehta" in
-the last 1 year.
--- Zomato Data Analysis using SQL
+
+```-- Zomato Data Analysis using SQL
 drop table if exists deliveries;
 drop table if exists customers;
 drop table if exists restaurants;
