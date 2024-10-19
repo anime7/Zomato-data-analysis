@@ -91,7 +91,7 @@ Question:
 Write a query to find the top 5 most frequently ordered dishes by the customer "Arjun Mehta" in
 the last 1 year.
 
-```select t1.customer_name,
+```sql select t1.customer_name,
        t1.dishes,
        t1.total_orders
 	   
