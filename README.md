@@ -84,3 +84,33 @@ foreign key(restaurant_id )
 references restaurants(restaurant_id);
 
 --end of schemas
+```
+## Business Problems and Solutions
+###Q1. Top 5 Most Frequently Ordered Dishes
+Question:
+Write a query to find the top 5 most frequently ordered dishes by the customer "Arjun Mehta" in
+the last 1 year.
+
+```select t1.customer_name,
+       t1.dishes,
+       t1.total_orders
+	   
+from 
+	(select c.customer_id,
+	      c.customer_name,
+		  o.order_item as dishes,
+		  count(*) as total_orders,
+		  dense_rank()over(order by count(*) desc) as rank 
+	from orders as o
+	join
+	customers as c
+	on c.customer_id=o.customer_id
+	where 
+	c.customer_name ='Arjun Mehta'
+	and 
+	o.order_date>=to_date('2024-09-02','yyyy-mm-dd') - interval '1 year'
+	group by 1,2,3
+	order by 1,4 desc) as t1 
+where rank<=5
+```
+```
