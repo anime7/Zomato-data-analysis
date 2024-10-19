@@ -4,3 +4,11 @@
 
 This Zomato data analysis project leverages SQL to extract actionable insights from the restaurant dataset. We delve into restaurant ratings, cuisines, and location data to identify high-performing restaurants, understand customer preferences, and highlight opportunities for Zomato to improve its services and recommendations. The project details the SQL queries used to generate the insights and the conclusions drawn.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Objectives
+* Unveiling Zomato's Culinary Landscape
+* Optimizing Zomato's Operations
+* Customer Loyalty Insights
+* Restaurant Performance Benchmarking
+* Predictive Trends in Demand
+* Driving Revenue and Growth
