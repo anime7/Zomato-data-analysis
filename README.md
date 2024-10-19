@@ -91,7 +91,8 @@ Question:
 Write a query to find the top 5 most frequently ordered dishes by the customer "Arjun Mehta" in
 the last 1 year.
 
-```sql select t1.customer_name,
+```sql
+       select t1.customer_name,
        t1.dishes,
        t1.total_orders
 	   
@@ -113,4 +114,40 @@ from
 	order by 1,4 desc) as t1 
 where rank<=5
 ```
+
+###Q2. Popular Time Slots
+--Question:
+--Identify the time slots during which the most orders are placed, based on 2-hour intervals.
+--type 1-------------------------------------------------------------------------------------------------
+```sql
+select 
+       count(order_id) as order_count,
+       case
+	      when extract(hour from order_time ) between 0 and 1 then '0-2'
+		  when extract(hour from order_time)  between 2 and 3 then '2-4'
+          when extract(hour from order_time)  between 4 and 5 then '4-6'
+		  when extract(hour from order_time)  between 6 and 7 then '6-8'
+		  when extract(hour from order_time)  between 8 and 9 then '8-10'
+		  when extract(hour from order_time)  between 10 and 11 then '10-12'
+		  when extract(hour from order_time)  between 12 and 13 then '12-14'
+		  when extract(hour from order_time)  between 14 and 15 then '14-16'
+		  when extract(hour from order_time)  between 16 and 17 then '16-18'
+		  when extract(hour from order_time)  between 18 and 19 then '18-20'
+		  when extract(hour from order_time)  between 20 and 21 then '20-22'
+		  when extract(hour from order_time)  between 22 and 23 then '22-24'
+	  end  time_slots
+from orders
+group by time_slots
+order by order_count desc;
+
+--type 2-------------------------------------------------------------------------------------------
+
+
+select 
+     floor(extract(hour from order_time)/2)*2 as st,
+	 floor(extract(hour from order_time)/2)*2+2 as et,
+	 count(*) as total_orders
+from orders
+group by 1,2 
+order by 3 desc;
 ```
