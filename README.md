@@ -17,7 +17,8 @@ Objectives
 Schema::
 
 -- Zomato Data Analysis using SQL
-```drop table if exists deliveries;
+```sql
+drop table if exists deliveries;
 drop table if exists customers;
 drop table if exists restaurants;
 drop table if exists riders;
