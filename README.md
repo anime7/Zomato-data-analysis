@@ -118,8 +118,9 @@ where rank<=5
 ###Q2. Popular Time Slots
 --Question:
 --Identify the time slots during which the most orders are placed, based on 2-hour intervals.
---type 1-------------------------------------------------------------------------------------------------
+
 ```sql
+--type 1-------------------------------------------------------------------------------------------------
 select 
        count(order_id) as order_count,
        case
