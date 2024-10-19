@@ -112,7 +112,7 @@ from
 	o.order_date>=to_date('2024-09-02','yyyy-mm-dd') - interval '1 year'
 	group by 1,2,3
 	order by 1,4 desc) as t1 
-where rank<=5
+where rank<=5;
 ```
 
 ###Q2. Popular Time Slots
@@ -167,7 +167,7 @@ from
 	group by customer_name 
 	order by 2 desc
 	)
-	where total_order>=750
+	where total_order>=750;
 
 ```
 
@@ -187,7 +187,7 @@ from
 	on
 	c.customer_id=o.customer_id
 	group by 1,2
-    having sum(total_amount)>100000
+    having sum(total_amount)>100000;
 ```
 ###Q5. Orders Without Delivery
 --Question:
@@ -201,7 +201,7 @@ restaurants as r on o.restaurant_id=r.restaurant_id
 left join deliveries as d on o.order_id=d.order_id
 where d.delivery_id is null
 group by 1,2
-order by 3 desc
+order by 3 desc;
 ```
 
 ###Q6. Restaurant Revenue Ranking
@@ -223,7 +223,7 @@ group by 1,2
 )
 select *
 from ranktable
-where rank=1
+where rank=1;
 ```
 ###Q7. Most Popular Dish by City
 --Question:
@@ -242,7 +242,7 @@ group by 1,2
 )
 select *
 from temptable
-where ranking=1
+where ranking=1;
 ```
 ###Q8. Customer Churn
 --Question:
@@ -255,7 +255,7 @@ where extract(year from order_date )=2023
  customer_id not in
                   (select distinct customer_id  
 				  from orders 
-				  where extract(year from order_date)=2024)
+				  where extract(year from order_date)=2024);
 
 
 
@@ -303,7 +303,7 @@ from
       table24 as t1
  right join 
       table23 as t2
-on t1.restaurant_id=t2.restaurant_id
+on t1.restaurant_id=t2.restaurant_id;
 
 
 ```
@@ -331,7 +331,7 @@ join
 deliveries as d 
 on
 o.order_id=d.order_id 
-where delivery_status='Delivered'
+where delivery_status='Delivered';
 
 
 
@@ -367,7 +367,7 @@ select
 	  current_order,
 	  round(((current_order::numeric-prev_order::numeric)/prev_order::numeric *100) ,2) as growth_rate
 from
-    growth_table 
+    growth_table ;
 
 
 ```
@@ -397,10 +397,10 @@ select customer_id,
 from orders
 group by 1
 ) as t1
-group by 1
+group by 1;
 
 
---select avg(total_amount) from orders--322.82
+--select avg(total_amount) from orders--322.82;
 
 ```
 
@@ -431,7 +431,7 @@ select rider_id,
        month,
 	   sum(per_order)as montly_earnings
 from t1
-group by month , rider_id
+group by month , rider_id;
  ```
 
 ###Q14. Rider Ratings Analysis
@@ -470,7 +470,7 @@ order by rider_id
 )
 as t1
 group by 2,1
-order by 1
+order by 1;
 ```
 
 
@@ -492,7 +492,7 @@ join
  on o.restaurant_id=r.restaurant_id
  group by 1,2
 ) as t2
-where ranking =1
+where ranking =1;
 
 
 
@@ -512,7 +512,7 @@ where ranking =1
  join
  customers as c
  on o.customer_id=c.customer_id
- group by 1,2
+ group by 1,2;
 
 
 
@@ -529,7 +529,7 @@ select
 	   lag( sum(total_amount),1)over(partition by extract(year from order_date) order by extract(month from order_date)) as prev_sale
 from orders 
 group by 1,2
-order by 1,2 
+order by 1,2 ;
 
 ```
 ###Q18. Rider Efficiency
@@ -570,7 +570,7 @@ rider_avg as
 select
        max(avg),
 	   min(avg)
-	  from rider_avg
+	  from rider_avg;
 
 ```  
 ###Q19. Order Item Popularity
@@ -594,7 +594,7 @@ select order_item,
 	   count(order_id) as total_orders
 from t1
  group by 1,2 
- order by 1,3 desc
+ order by 1,3 desc;
 	   
 ```   
 
@@ -620,6 +620,6 @@ on o.restaurant_id =r.restaurant_id
        city,
 	   rank()over(order by sum(total_amount) desc ) as ranking
   from t1
- group by 2
+ group by 2;
  ```
 -- END---
